@@ -2,18 +2,26 @@ syntax = "proto3";
 package = chat;
 option = go_package ="github.com/shatteredrealms/chat/pkg/pb";
 
+// Channel messages are sent on
 message Channel {
   string name = 1;
 }
 
+// JWT Authorization of sender
+// sub should set to the username of the sending character
+// character should be set to characters name
+// iss should always be `game.shatteredrealmsonline.com`
 message Sender {
   string token = 1;
 }
 
+// Message that is being sent
 message Message {
-  Sender sender = 1;
-  Channel channel = 2;
-  string message = 3;
+  // Send and channel for the message
+  Subscription subscription = 1;
+
+  // Contents of the message
+  string message = 2;
 }
 
 message MessageAck {
@@ -22,5 +30,12 @@ message MessageAck {
     SUCCESS = 1;
   }
 
+  // Response code for the message
   Code code = 1;
+}
+
+// A sender who is subscribed to a channel
+message Subscription {
+  Sender sender = 1;
+  Channel channel = 2;
 }
