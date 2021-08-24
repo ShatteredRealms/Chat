@@ -2,6 +2,9 @@ syntax = "proto3";
 package = chat;
 option = go_package ="github.com/shatteredrealms/chat/pkg/pb";
 
+// Empty gRPC message
+message Empty { }
+
 // Channel messages are sent on
 message Channel {
   string name = 1;
@@ -15,13 +18,16 @@ message Sender {
   string token = 1;
 }
 
-// Message that is being sent
+// Raw contents of a message
+message RawMessage {
+  string message = 1;
+}
+
+// Message sent in chat
 message Message {
-  // Send and channel for the message
   Subscription subscription = 1;
 
-  // Contents of the message
-  string message = 2;
+  RawMessage message = 2;
 }
 
 message MessageAck {

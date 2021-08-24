@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "api/chat.proto";
 
 service FrontendService {
+  // Sends a message to a channel
   rpc Send(stream Message) returns () {
     option (google.api.http) = {
       post: "/v1/frontendservice/send"
@@ -13,7 +14,8 @@ service FrontendService {
     };
   }
 
-  rpc Connect(Channel) returns (stream Message) {
+  // Connects a user to a channel and returns a stream of messages that were sent on the channel
+  rpc Connect(Subscription) returns (stream RawMessage) {
     option (google.api.http) = {
       post: "/v1/frontendservice/connect"
       body: "*"
