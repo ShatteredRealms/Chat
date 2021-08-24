@@ -1,16 +1,19 @@
 syntax = "proto3";
 package = chat;
-option = go_package ="github.com/shatteredrealms/chat/pkg/pb"
+option = go_package ="github.com/shatteredrealms/chat/pkg/pb";
 
 message Channel {
   string name = 1;
 }
 
+message Sender {
+  string token = 1;
+}
+
 message Message {
-  string Token = 1;
+  Sender sender = 1;
   Channel channel = 2;
-  string sender = 3;
-  string Message = 4;
+  string message = 3;
 }
 
 message MessageAck {
