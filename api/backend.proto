@@ -1,9 +1,9 @@
 syntax = "proto3";
-package = chat;
-option = go_package ="github.com/shatteredrealms/chat/pkg/pb";
+package chat;
+option go_package ="github.com/shatteredrealms/chat/pkg/pb";
 
 import "google/api/annotations.proto";
-import "api/chat.proto";
+import "chat.proto";
 
 message GenericResponse {
   enum Code {
@@ -17,23 +17,23 @@ service BackendService {
   // Gets all available channels
   rpc GetChannels(Empty) returns (Channel) {
     option (google.api.http) = {
-      get = "/v1/backendservice/channels:get"
+      get: "/v1/backendservice/channels:get"
     };
   }
 
   // Registers a new channel with the database
   rpc CreateChannel(Channel) returns (GenericResponse) {
     option (google.api.http) = {
-      post = "/v1/backendserivce/channels:create"
-      body = "*"
+      post: "/v1/backendserivce/channels:create"
+      body: "*"
     };
   }
 
   // Deletes a channel
   rpc DeleteChannel(Channel) returns (GenericResponse) {
     option (google.api.http) = {
-      post = "/v1/backendserivce/channels:delete"
-      body = "*"
+      post: "/v1/backendserivce/channels:delete"
+      body: "*"
     };
   }
 }

@@ -1,13 +1,15 @@
 syntax = "proto3";
-package = chat;
-option = go_package ="github.com/shatteredrealms/chat/pkg/pb";
+package chat;
+option go_package = "github.com/ShatteredRealms/chat/pkg/pb";
 
 import "google/api/annotations.proto";
-import "api/chat.proto";
+import "chat.proto";
+
+message EmptyMessage {}
 
 service FrontendService {
   // Sends a message to a channel
-  rpc Send(stream Message) returns () {
+  rpc Send(stream Message) returns (EmptyMessage) {
     option (google.api.http) = {
       post: "/v1/frontendservice/send"
       body: "*"

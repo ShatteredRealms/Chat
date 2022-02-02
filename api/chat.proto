@@ -1,6 +1,6 @@
 syntax = "proto3";
-package = chat;
-option = go_package ="github.com/shatteredrealms/chat/pkg/pb";
+package chat;
+option go_package ="github.com/shatteredrealms/chat/pkg/pb";
 
 // Empty gRPC message
 message Empty { }
